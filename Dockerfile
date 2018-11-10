@@ -4,21 +4,23 @@ LABEL com.nvidia.volumes.needed="nvidia_driver"
 
 RUN echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64 /" > /etc/apt/sources.list.d/nvidia-ml.list
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-         build-essential \
-         cmake \
-         git \
-         curl \
-         vim \
-         ca-certificates \
-         libnccl2=2.2.13-1+cuda9.0 \
-         libnccl-dev=2.2.13-1+cuda9.0 \
-         python-qt4 \
-         libjpeg-dev \
-	 zip \
-	 unzip \
-         libpng-dev &&\
-     rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install \
+  -y --no-install-recommends --allow-downgrades --allow-change-held-packages \
+     build-essential \
+     cmake \
+     git \
+     curl \
+     vim \
+     ca-certificates \
+     libnccl2=2.2.13-1+cuda9.0 \
+     libnccl-dev=2.2.13-1+cuda9.0 \
+     python-qt4 \
+     libjpeg-dev \
+  	 zip \
+  	 unzip \
+     libpng-dev && \
+   rm -rf /var/lib/apt/lists/*
+
 
 
 ENV PYTHON_VERSION=3.6
